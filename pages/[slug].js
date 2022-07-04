@@ -26,15 +26,15 @@ const Slug = () => {
             drag="y"
             transition={{ type: "tween", stiffness: 10, duration: 0.6 }}
           >
-            <img className={styles.img} src={`${slug}.jpg`} />
-            <p>
+            <motion.img layoutId={`${slug}1`}  className={styles.img} src={`${slug}.jpg`} transition={{ type: "tween", stiffness: 10, duration: 0.6 }}/>
+            <motion.div className={styles.p} transition={{ type: "spring", stiffness: 100, duration: 0.6 }}>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industrys standard dummy text.
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industrys standard dummy text.
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industrys standard dummy text.
-            </p>
+            </motion.div>
           </motion.div>
         </Link>
       </div>

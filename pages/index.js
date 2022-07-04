@@ -16,12 +16,12 @@ export default function Home() {
             animate={{ scale: 1 }}
             transition={{ type: "tween", stiffness: 100, duration: 0.6 }}
           >
-            <img className={styles.img} src={`${item}.jpg`} />
+            <motion.img layoutId={`${item}1`} className={styles.img} src={`${item}.jpg`} transition={{ type: "tween", stiffness: 10, duration: 0.6 }}/>
 
-            <p>
+            <motion.div className={styles.p} transition={{ type: "spring", stiffness: 100, duration: 0.6 }}>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industrys standard dummy text.
-            </p>
+            </motion.div>
           </motion.div>
         </Link>
       ))}
