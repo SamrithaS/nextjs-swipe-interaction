@@ -20,7 +20,7 @@ export default function Home() {
 
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text.
+              industry. Lorem Ipsum has been the industrys standard dummy text.
             </p>
           </motion.div>
         </Link>
