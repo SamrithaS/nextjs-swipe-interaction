@@ -4,7 +4,7 @@
 
 .main {
   min-height: 100vh;
-  width:100vw;
+  width: 100vw;
   padding: 4rem 0;
   flex: 1;
   display: flex;
@@ -90,7 +90,13 @@
   text-align: center;
   user-select: none;
 }
-
+.wrapper {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) !important;
+  width: fit-content;
+  position: absolute;
+}
 .card h2 {
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
