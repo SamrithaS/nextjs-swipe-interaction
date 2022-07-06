@@ -4,19 +4,38 @@ import styles from "../styles/Home.module.css";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
   let array = ["bug", "cat", "snow", "moon"];
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  // useEffect(() => {
+  //   if (router.pathname !== "/") {
+  //     document.body.style.overflow = "hidden";
+  //   } else {
+  //     document.body.style.overflow = "scroll";
+  //   }
+  // }, [router]);
+  console.log(router.pathname);
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    localStorage.setItem("scroll", position);
+    setScrollPosition(position);
+  };
 
   useEffect(() => {
-    if (router.pathname !== "/") {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "scroll";
+    if (router.pathname === "/") {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      console.log("here", localStorage.getItem("scroll"));
+
+      window.scrollTo(0, localStorage.getItem("scroll"));
     }
-  }, [router]);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [router.pathname]);
 
   return (
     <div className={styles.div}>
@@ -24,24 +43,20 @@ export default function Home() {
         <Link href={`/${item}`} key={item}>
           <motion.div
             layoutId={item}
+            style={{ margin: 10, scale: 1 }}
             className={styles.card}
-            initial={{ scale: 1 }}
-            transition={{ type: "tween", stiffness: 100, duration: 0.6 }}
+            // initial={{  maxWidth: 300, height:'auto'}}
+            transition={{ type: "tween", stiffness: 100, duration: 0.2 }}
           >
             <motion.img
               layoutId={`${item}img`}
               className={styles.img}
               src={`${item}.jpg`}
-              transition={{ type: "tween", stiffness: 10, duration: 0.6 }}
+              whileHover={{ scale: 1.1 }}
+              initial={{ scale: 1 }}
+              // animate={{ maxWidth: 300, height: 250, width: 800}}
+              transition={{ type: "tween", stiffness: 100, duration: 0.3 }}
             />
-
-            <motion.div
-              className={styles.p}
-              transition={{ type: "tween", stiffness: 100, duration: 0.6 }}
-            >
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industrys standard dummy text.
-            </motion.div>
           </motion.div>
         </Link>
       ))}

@@ -3,9 +3,9 @@
 }
 
 .main {
-  min-height: 100vh;
+  height: 100%;
   width: 100vw;
-  padding: 4rem 0;
+  /* padding: 4rem 0; */
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -13,6 +13,7 @@
   align-items: center;
   background-color: black;
   user-select: none;
+  /* -webkit-tap-highlight-color: rgba(255, 255, 255, 0); */
 }
 
 .footer {
@@ -77,24 +78,34 @@
 }
 
 .card {
-  margin: 1rem;
-  text-align: left;
+  /* margin: 1rem; */
   color: inherit;
   text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
-  background-color: white;
+  /* max-width: 300px; */
+  background-color: black;
   cursor: pointer;
-  text-align: center;
   user-select: none;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+}
+.pos {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: scroll;
 }
 .wrapper {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) !important;
-  width: fit-content;
+  /* left: 50%;*
+  top: 50%; 
+  /* transform: translate(-50%, -50%) !important; */
+  width: 100%;
   position: absolute;
 }
 .card h2 {
@@ -103,11 +114,13 @@
 }
 
 .p {
-  margin: 0;
-  font-size: 0.85rem;
+  margin-top: 30px;
+  font-size: 0.95rem;
   line-height: 1.5;
-  max-width: 300px;
-  padding: 5px 5px;
+  text-align: left;
+  color: white;
+  /* max-width: 300px; */
+  padding: 20px 9px 5px 9px;
 }
 
 .logo {
@@ -136,11 +149,10 @@
   max-width: 100%;
   height: 250px;
   object-fit: cover;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  -webkit-user-drag: none;
+  border-radius: 10px;
+  /* -webkit-user-drag: none;
   -khtml-user-drag: none;
   -moz-user-drag: none;
   -o-user-drag: none;
-  user-drag: none;
+  user-drag: none; */
 }
