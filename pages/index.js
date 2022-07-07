@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
-  let array = ["bug", "cat", "snow", "moon"];
+  let array = ["joker", "avatar", "1917", "itallends", "dumbledore", "arthur"];
   const [scrollPosition, setScrollPosition] = useState(0);
 
   // useEffect(() => {
@@ -43,11 +43,12 @@ export default function Home() {
         <Link href={`/${item}`} key={item}>
           <motion.div
             layoutId={item}
+          layout="position"
             style={{ margin: 10, scale: 1 }}
             className={styles.card}
             // initial={{  maxWidth: 300, height:'auto'}}
-            transition={{ type: "tween", stiffness: 100, duration: 0.2 }}
-          >
+            transition={{ type: "tween", stiffness: 300, damping:30, duration: 0.3 }}
+            >
             <motion.img
               layoutId={`${item}img`}
               className={styles.img}
@@ -55,8 +56,8 @@ export default function Home() {
               whileHover={{ scale: 1.1 }}
               initial={{ scale: 1 }}
               // animate={{ maxWidth: 300, height: 250, width: 800}}
-              transition={{ type: "tween", stiffness: 100, duration: 0.3 }}
-            />
+              transition={{ type: "tween", stiffness: 300, damping:30, duration: 0.3 }}
+              />
           </motion.div>
         </Link>
       ))}

@@ -34,7 +34,6 @@ const Slug = () => {
           //     height: "100%",
           //     minHeight: "100vh",
           //   }}
-
           initial={{ scale:1 }}
           animate={{ scale:1, zoom:1}}
           whileDrag={{ scale: 0.9 }}
@@ -44,22 +43,22 @@ const Slug = () => {
           style={{ height: "100%", minHeight: "100vh" }}
           dragConstraints={{ top: 80, bottom: 80 }}
           drag="y"
-          transition={{ type: "tween", stiffness: 100, duration: 0.3 }}
+          transition={{ type: "tween", stiffness: 300, damping:35, duration: 0.3 }}
         >
           <motion.img
             layoutId={`${slug}img`}
             className={styles.img}
-            style = {{height:250, scale: 1}}
+            style = {{height:350, scale: 1}}
             initial={{ borderBottomLeftRadius:10, borderBottomRightRadius:10, scale:1 }}
-            animate={{ borderBottomLeftRadius:0, borderBottomRightRadius:0, scale:1.3, zoom:1}}
+            animate={{ borderBottomLeftRadius:0, borderBottomRightRadius:0, scale:1.6, zoom:1}}
             src={`${slug}.jpg`}
-            transition={{ type: "tween", stiffness: 100, duration: 0.3 }}
+            transition={{ type: "tween", stiffness: 300, damping:35, duration: 0.3 }}
           />
           <motion.p
             className={styles.p}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ type: "tween", stiffness: 100, duration: 1 }}
+            transition={{ type: "tween", stiffness: 300, damping:35, duration: 1 }}
           >
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industrys standard dummy text.
