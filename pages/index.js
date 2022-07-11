@@ -23,19 +23,14 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // if (router.pathname === "/") {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    console.log("here", localStorage.getItem("scroll"));
-
-    window.scrollTo(0, localStorage.getItem("scroll"));
-    // }
+    document.body.addEventListener("scroll", handleScroll, { passive: true });
+    if (router.pathname === "/") {
+      document.body.scrollTo(0, localStorage.getItem("scroll"));
+    }
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      document.body.removeEventListener("scroll", handleScroll);
     };
-  },[]);
-  // var element=ReactDOM.findDOMNode(elref.current[0]);
-  // var rect =elref.current[0]?.getBoundingClientRect();
-  //   console.log(rect.getBoundingClientRect())
+  }, []);
   var rect = {};
   useEffect(() => {
     array.map((item, id) => {
@@ -43,10 +38,8 @@ export default function Home() {
       setOffset(rect);
     });
   }, []);
-  console.log(offset, "rect");
-  // const ThemeContext = React.createContext(offset);
   return (
-    <div className={styles.div}>
+    <motion.body className={styles.div} layoutScroll>
       {array.map((item, id) => (
         <Link
           href={{
@@ -63,11 +56,11 @@ export default function Home() {
               }}
               key={router?.query?.slug}
               layoutId={item}
-              layout={true}
+              layout
               style={{ margin: 10, scale: 1 }}
               className={styles.card}
-              initial={{ top: scrollPosition }}
-              animate={{ top: scrollPosition }}
+              // initial={{ top: scrollPosition }}
+              // animate={{ top: scrollPosition }}
               transition={{
                 type: "tween",
                 stiffness: 300,
@@ -93,6 +86,6 @@ export default function Home() {
           </div>
         </Link>
       ))}
-    </div>
+    </motion.body>
   );
 }
