@@ -16,8 +16,6 @@ const Slug = () => {
   // let y;
   const handleOnDragEnd = (_, info) => {
     const data = scrollItem.current.getBoundingClientRect();
-    console.log(info.offset, data.top, info);
-
     if (info.offset.y > 40 && data.top > 0) {
       router.back();
     } else if (info.velocity.y > 0 && info.offset.y > 0) {
@@ -31,14 +29,12 @@ const Slug = () => {
     }
   };
   useEffect(() => {
-    // setTimeout(() => {
     window.scrollTo(0, scroll);
-    // }, 280);
     document.body.style.overflow = "hidden";
   }, []);
+
   return (
     <>
-      <div style={{ background: "black", opacity: 1 }}>{/* <Home /> */}</div>
       <AnimatePresence>
         <motion.div
           layoutId={slug}
@@ -64,7 +60,7 @@ const Slug = () => {
             dragElastic={2}
             dragDirectionLock
             // dragSnapToOrigin
-            onDrag = {handleOnDrag}
+            // onDrag = {handleOnDrag}
             onDragEnd={handleOnDragEnd}
             drag="y"
             style={{

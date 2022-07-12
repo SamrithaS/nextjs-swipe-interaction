@@ -12,31 +12,32 @@ export default function Home() {
   const [offset, setOffset] = useState({});
   const elref = useRef([]);
   const handleScroll = () => {
-    const position = document.getElementById('body').scrollTop;
-    // console.log(position,'pos')
+    const position = document.getElementById("body").scrollTop;
     setScrollPosition(position);
     localStorage.setItem("scroll", position);
   };
 
   useEffect(() => {
-    document.getElementById('body').addEventListener("scroll", handleScroll);
-    console.log('scroll')
+    document.getElementById("body").addEventListener("scroll", handleScroll);
+    console.log("scroll");
     if (router.pathname === "/") {
-      document.getElementById('body').scroll(0, localStorage.getItem("scroll"));
+      document.getElementById("body").scroll(0, localStorage.getItem("scroll"));
     }
     return () => {
-      document?.getElementById('body')?.removeEventListener("scroll", handleScroll);
+      document
+        ?.getElementById("body")
+        ?.removeEventListener("scroll", handleScroll);
     };
-  },[]);
+  }, []);
 
   var rect = {};
   useEffect(() => {
     array.map((item, id) => {
-      rect[id] =  elref.current[id].offsetTop;
+      rect[id] = elref.current[id].offsetTop;
       setOffset(rect);
     });
   }, []);
-  
+
   return (
     <motion.div className={styles.div} layoutScroll id="body">
       {array.map((item, id) => (
@@ -59,7 +60,7 @@ export default function Home() {
               style={{ margin: 10, scale: 1 }}
               className={styles.card}
               initial={{ top: -20 }}
-              animate={{ top: scrollPosition}}
+              animate={{ top: scrollPosition }}
               transition={{
                 type: "tween",
                 stiffness: 300,
