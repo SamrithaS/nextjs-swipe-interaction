@@ -46,7 +46,7 @@ const Slug = () => {
           animate={{ scale: 1, zoom: 1, top: scroll }}
           // whileDrag={{ scale: 0.9 }}
           exit={{ top: scroll }}
-          style={{ translateY: y, top: scroll }}
+          style={{ translateY: y, top: scroll, zIndex: 100 }}
           transition={{
             type: "tween",
             stiffness: 300,

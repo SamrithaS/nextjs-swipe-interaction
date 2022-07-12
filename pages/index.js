@@ -19,7 +19,6 @@ export default function Home() {
 
   useEffect(() => {
     document.getElementById("body").addEventListener("scroll", handleScroll);
-    console.log("scroll");
     if (router.pathname === "/") {
       document.getElementById("body").scroll(0, localStorage.getItem("scroll"));
     }
