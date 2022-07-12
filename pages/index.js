@@ -1,13 +1,9 @@
-import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
-import { resolveHref } from "next/dist/shared/lib/router/router";
-import * as ReactDOM from "react-dom";
 
 export default function Home() {
   const router = useRouter();
@@ -15,31 +11,34 @@ export default function Home() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [offset, setOffset] = useState({});
   const elref = useRef([]);
-  console.log(router.pathname);
   const handleScroll = () => {
-    const position = window.pageYOffset;
-    localStorage.setItem("scroll", position);
+    const position = document.getElementById('body').scrollTop;
+    // console.log(position,'pos')
     setScrollPosition(position);
+    localStorage.setItem("scroll", position);
   };
 
   useEffect(() => {
-    document.body.addEventListener("scroll", handleScroll, { passive: true });
+    document.getElementById('body').addEventListener("scroll", handleScroll);
+    console.log('scroll')
     if (router.pathname === "/") {
-      document.body.scrollTo(0, localStorage.getItem("scroll"));
+      document.getElementById('body').scroll(0, localStorage.getItem("scroll"));
     }
     return () => {
-      document.body.removeEventListener("scroll", handleScroll);
+      document?.getElementById('body')?.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  },[]);
+
   var rect = {};
   useEffect(() => {
     array.map((item, id) => {
-      rect[id] = document.getElementById(id).getBoundingClientRect().top;
+      rect[id] =  elref.current[id].offsetTop;
       setOffset(rect);
     });
   }, []);
+  
   return (
-    <motion.body className={styles.div} layoutScroll>
+    <motion.div className={styles.div} layoutScroll id="body">
       {array.map((item, id) => (
         <Link
           href={{
@@ -59,8 +58,8 @@ export default function Home() {
               layout
               style={{ margin: 10, scale: 1 }}
               className={styles.card}
-              // initial={{ top: scrollPosition }}
-              // animate={{ top: scrollPosition }}
+              initial={{ top: -20 }}
+              animate={{ top: scrollPosition}}
               transition={{
                 type: "tween",
                 stiffness: 300,
@@ -86,6 +85,6 @@ export default function Home() {
           </div>
         </Link>
       ))}
-    </motion.body>
+    </motion.div>
   );
 }
